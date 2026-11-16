@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>乙木人生 · 己卯癸酉乙亥丁丑</title>
+  <meta name="description" content="1999年农历八月十一丑时生辰八字专属命理网站" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;600;700&family=ZCOOL+XiaoWei&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --wood: #2d6a4f;
+      --wood-light: #40916c;
+      --earth: #bc6c25;
+      --water: #1d3557;
+      --fire: #e76f51;
+      --gold: #c9a227;
+      --bg: #0f1419;
+      --card: #1a2332;
+      --text: #e8e6e3;
+      --muted: #a0a8b0;
+      --accent: #52b788;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: 'Noto Serif SC', serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.7;
+      min-height: 100vh;
+      background-image: 
+        radial-gradient(ellipse at 20% 20%, rgba(45,106,79,0.15) 0%, transparent 50%),
+        radial-gradient(ellipse at 80% 80%, rgba(188,108,37,0.1) 0%, transparent 50%);
+    }
+    .container { max-width: 920px; margin: 0 auto; padding: 2rem 1.25rem 4rem; }
+    header {
+      text-align: center;
+      padding: 3rem 0 2.5rem;
+      position: relative;
+    }
+    header::after {
+      content: '';
+      position: absolute;
+      bottom: 0; left: 50%; transform: translateX(-50%);
+      width: 60px; height: 2px;
+      background: linear-gradient(90deg, transparent, var(--accent), transparent);
+    }
+    .badge {
+      display: inline-block;
+      font-size: 0.75rem;
+      letter-spacing: 0.15em;
+      color: var(--accent);
+      border: 1px solid var(--accent);
+      padding: 0.3rem 0.9rem;
+      border-radius: 999px;
+      margin-bottom: 1.2rem;
+      opacity: 0.9;
+    }
+    h1 {
+      font-family: 'ZCOOL XiaoWei', 'Noto Serif SC', serif;
+      font-size: clamp(2.2rem, 6vw, 3.2rem);
+      font-weight: 400;
+      letter-spacing: 0.08em;
+      margin-bottom: 0.6rem;
+      background: linear-gradient(135deg, #95d5b2, #52b788, #2d6a4f);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .subtitle {
+      color: var(--muted);
+      font-size: 1rem;
+      letter-spacing: 0.05em;
+    }
+    .pillars {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 0.9rem;
+      margin: 2.8rem 0 2.5rem;
+    }
+    .pillar {
+      background: var(--card);
+      border-radius: 16px;
+      padding: 1.4rem 0.6rem;
+      text-align: center;
+      border: 1px solid rgba(255,255,255,0.06);
+      transition: transform 0.25s, box-shadow 0.25s;
+      position: relative;
+      overflow: hidden;
+    }
+    .pillar:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 12px 30px rgba(0,0,0,0.35);
+    }
+    .pillar::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 3px;
+    }
+    .pillar.year::before { background: var(--earth); }
+    .pillar.month::before { background: var(--gold); }
+    .pillar.day::before { background: var(--wood-light); }
+    .pillar.hour::before { background: var(--fire); }
+    .pillar-label {
+      font-size: 0.7rem;
+      color: var(--muted);
+      letter-spacing: 0.12em;
+      margin-bottom: 0.7rem;
+    }
+    .pillar-gan {
+      font-size: 2.1rem;
+      font-weight: 700;
+      line-height: 1.1;
+    }
+    .pillar-zhi {
+      font-size: 1.7rem;
+      margin-top: 0.15rem;
+      opacity: 0.92;
+    }
+    .pillar-wuxing {
+      font-size: 0.72rem;
+      color: var(--muted);
+      margin-top: 0.7rem;
+      letter-spacing: 0.05em;
+    }
+    .section {
+      background: var(--card);
+      border-radius: 20px;
+      padding: 1.8rem 1.6rem;
+      margin-bottom: 1.5rem;
+      border: 1px solid rgba(255,255,255,0.05);
+    }
+    .section h2 {
+      font-size: 1.25rem;
+      font-weight: 600;
+      margin-bottom: 1.1rem;
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+    }
+    .section h2::before {
+      content: '';
+      width: 6px; height: 1.1em;
+      background: var(--accent);
+      border-radius: 3px;
+    }
+    .day-master {
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+      flex-wrap: wrap;
+    }
+    .day-master-icon {
+      width: 80px; height: 80px;
+      border-radius: 50%;
+      background: linear-gradient(145deg, #40916c, #2d6a4f);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2.4rem;
+      font-weight: 700;
+      flex-shrink: 0;
+      box-shadow: 0 8px 24px rgba(45,106,79,0.4);
+    }
+    .day-master-info h3 {
+      font-size: 1.35rem;
+      margin-bottom: 0.3rem;
+    }
+    .day-master-info p {
+      color: var(--muted);
+      font-size: 0.95rem;
+    }
+    .wuxing-bars {
+      display: flex;
+      flex-direction: column;
+      gap: 0.7rem;
+      margin-top: 0.5rem;
+    }
+    .wuxing-row {
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+    }
+    .wuxing-label {
+      width: 2.2rem;
+      font-size: 0.9rem;
+    }
+    .wuxing-track {
+      flex: 1;
+      height: 10px;
+      background: rgba(255,255,255,0.08);
+      border-radius: 999px;
+      overflow: hidden;
+    }
+    .wuxing-fill {
+      height: 100%;
+      border-radius: 999px;
+      transition: width 1s ease;
+    }
+    .wuxing-count {
+      width: 1.5rem;
+      text-align: right;
+      font-size: 0.85rem;
+      color: var(--muted);
+    }
+    .grid-2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.2rem;
+    }
+    @media (max-width: 640px) {
+      .pillars { grid-template-columns: repeat(2, 1fr); }
+      .grid-2 { grid-template-columns: 1fr; }
+      .day-master { flex-direction: column; text-align: center; }
+    }
+    .tag {
+      display: inline-block;
+      background: rgba(82,183,136,0.15);
+      color: var(--accent);
+      font-size: 0.78rem;
+      padding: 0.2rem 0.65rem;
+      border-radius: 6px;
+      margin: 0.2rem 0.3rem 0.2rem 0;
+    }
+    ul.clean {
+      list-style: none;
+      padding-left: 0;
+    }
+    ul.clean li {
+      position: relative;
+      padding-left: 1.3rem;
+      margin-bottom: 0.55rem;
+      color: #d1d5db;
+    }
+    ul.clean li::before {
+      content: '▸';
+      position: absolute;
+      left: 0;
+      color: var(--accent);
+      font-size: 0.85rem;
+    }
+    .quote {
+      border-left: 3px solid var(--accent);
+      padding: 0.8rem 1.2rem;
+      margin: 1.2rem 0;
+      background: rgba(82,183,136,0.06);
+      border-radius: 0 10px 10px 0;
+      font-style: italic;
+      color: #c5c9ce;
+    }
+    footer {
+      text-align: center;
+      padding: 2.5rem 1rem 1rem;
+      color: var(--muted);
+      font-size: 0.82rem;
+    }
+    footer a { color: var(--accent); text-decoration: none; }
+    .nayin {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.6rem;
+      margin-top: 0.8rem;
+    }
+    .nayin span {
+      background: rgba(255,255,255,0.06);
+      padding: 0.35rem 0.8rem;
+      border-radius: 8px;
+      font-size: 0.85rem;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <div class="badge">生辰八字 · 专属命盘</div>
+      <h1>乙木人生</h1>
+      <p class="subtitle">己卯 · 癸酉 · 乙亥 · 丁丑<br>1999年农历八月十一 · 丑时 · 河北邯郸</p>
+    </header>
+
+    <!-- 四柱 -->
+    <div class="pillars">
+      <div class="pillar year">
+        <div class="pillar-label">年柱</div>
+        <div class="pillar-gan">己</div>
+        <div class="pillar-zhi">卯</div>
+        <div class="pillar-wuxing">土 · 木</div>
+      </div>
+      <div class="pillar month">
+        <div class="pillar-label">月柱</div>
+        <div class="pillar-gan">癸</div>
+        <div class="pillar-zhi">酉</div>
+        <div class="pillar-wuxing">水 · 金</div>
+      </div>
+      <div class="pillar day">
+        <div class="pillar-label">日柱 · 日主</div>
+        <div class="pillar-gan">乙</div>
+        <div class="pillar-zhi">亥</div>
+        <div class="pillar-wuxing">木 · 水</div>
+      </div>
+      <div class="pillar hour">
+        <div class="pillar-label">时柱</div>
+        <div class="pillar-gan">丁</div>
+        <div class="pillar-zhi">丑</div>
+        <div class="pillar-wuxing">火 · 土</div>
+      </div>
+    </div>
+
+    <!-- 日主 -->
+    <section class="section">
+      <h2>日主解读</h2>
+      <div class="day-master">
+        <div class="day-master-icon">乙</div>
+        <div class="day-master-info">
+          <h3>乙木 · 阴柔之木</h3>
+          <p>如藤蔓花草，柔韧而坚韧。不争锋芒，却能在夹缝中生长，适应力极强。生于酉月金旺之时，得亥水印星滋养，形成「水生木」的通关之势。</p>
+        </div>
+      </div>
+      <div class="quote">
+        「乙木虽柔，却能绕石而生；看似随风，实则根深。」
+      </div>
+      <p style="margin-top:1rem;color:var(--muted);font-size:0.95rem;">
+        你是那种外表温和、内心有主见的人。不喜欢硬碰硬，但一旦认准方向，会用持续的努力慢慢达成目标。适合需要耐心、细腻与长期积累的领域。
+      </p>
+    </section>
+
+    <!-- 五行 -->
+    <section class="section">
+      <h2>五行分布</h2>
+      <div class="wuxing-bars">
+        <div class="wuxing-row">
+          <span class="wuxing-label">木</span>
+          <div class="wuxing-track"><div class="wuxing-fill" style="width:40%;background:var(--wood-light)"></div></div>
+          <span class="wuxing-count">2</span>
+        </div>
+        <div class="wuxing-row">
+          <span class="wuxing-label">火</span>
+          <div class="wuxing-track"><div class="wuxing-fill" style="width:20%;background:var(--fire)"></div></div>
+          <span class="wuxing-count">1</span>
+        </div>
+        <div class="wuxing-row">
+          <span class="wuxing-label">土</span>
+          <div class="wuxing-track"><div class="wuxing-fill" style="width:40%;background:var(--earth)"></div></div>
+          <span class="wuxing-count">2</span>
+        </div>
+        <div class="wuxing-row">
+          <span class="wuxing-label">金</span>
+          <div class="wuxing-track"><div class="wuxing-fill" style="width:20%;background:var(--gold)"></div></div>
+          <span class="wuxing-count">1</span>
+        </div>
+        <div class="wuxing-row">
+          <span class="wuxing-label">水</span>
+          <div class="wuxing-track"><div class="wuxing-fill" style="width:40%;background:#457b9d"></div></div>
+          <span class="wuxing-count">2</span>
+        </div>
+      </div>
+      <div class="nayin" style="margin-top:1.4rem;">
+        <span>年纳音 · 城头土</span>
+        <span>月纳音 · 剑锋金</span>
+        <span>日纳音 · 山头火</span>
+        <span>时纳音 · 涧下水</span>
+      </div>
+      <p style="margin-top:1.2rem;font-size:0.92rem;color:var(--muted);">
+        日主乙木身偏弱，月令酉金克身，但亥水印星有力，癸水透干生木，整体形成「印星通关」的格局。喜用神偏向<strong style="color:var(--accent)">水、木</strong>，土为财星可用，金不宜过旺。
+      </p>
+    </section>
+
+    <!-- 性格 & 建议 -->
+    <div class="grid-2">
+      <section class="section">
+        <h2>性格特质</h2>
+        <ul class="clean">
+          <li>外表温和，内心细腻敏感</li>
+          <li>适应力强，善于在变化中找平衡</li>
+          <li>有责任心，对亲近的人很护短</li>
+          <li>想法多，执行时偶尔犹豫</li>
+          <li>不喜欢冲突，但底线清晰</li>
+          <li>对美和氛围有较高要求</li>
+        </ul>
+      </section>
+      <section class="section">
+        <h2>适合方向</h2>
+        <ul class="clean">
+          <li>需要耐心与细节的工作</li>
+          <li>文化、设计、内容、咨询类</li>
+          <li>与水木相关的行业（教育、出版、园艺、互联网内容等）</li>
+          <li>可考虑长期积累型副业</li>
+          <li>人际关系中宜多交「水」属性贵人</li>
+        </ul>
+      </section>
+    </div>
+
+    <section class="section">
+      <h2>运势与建议</h2>
+      <p style="margin-bottom:1rem;">当前阶段（约2025-2035）大运走势与印星、财星互动较多，宜稳扎稳打，不宜过于冒进。</p>
+      <div style="display:flex;flex-wrap:wrap;gap:0.4rem;margin-bottom:1.2rem;">
+        <span class="tag">喜用水木</span>
+        <span class="tag">忌金过旺</span>
+        <span class="tag">财星可用</span>
+        <span class="tag">贵人多在北方与东方</span>
+      </div>
+      <ul class="clean">
+        <li><strong>事业</strong>：适合深耕专业，或转向需要沟通与创意的岗位。换工作宜选有稳定基础的机会。</li>
+        <li><strong>财运</strong>：正财为主，偏财可小试但不宜重注。积累比爆发更适合你。</li>
+        <li><strong>感情</strong>：日支亥为桃花，感情运不弱，但需注意沟通与边界。主动一点会更好。</li>
+        <li><strong>健康</strong>：注意肝胆、睡眠与情绪波动。丑时出生，可适当关注脾胃与湿气。</li>
+        <li><strong>颜色与方位</strong>：多穿绿色、蓝色系；办公或学习可坐北朝南，或朝东。</li>
+      </ul>
+    </section>
+
+    <section class="section">
+      <h2>给自己的一句话</h2>
+      <div class="quote" style="font-size:1.05rem;line-height:1.8;">
+        你不是要成为最锋利的刀，而是要成为那棵能绕过石头、依然向上的藤。
+        柔软不是软弱，是另一种强大。慢慢来，你的路会越走越宽。
+      </div>
+    </section>
+
+    <footer>
+      <p>基于农历1999年八月十一 丑时（公历1999-09-20 01:30）排出</p>
+      <p style="margin-top:0.4rem;">仅供参考娱乐 · 命运由自己书写</p>
+      <p style="margin-top:1rem;"><a href="https://github.com/ddx-9/bazi-yi-mu" target="_blank">GitHub 仓库</a></p>
+    </footer>
+  </div>
+</body>
+</html>
