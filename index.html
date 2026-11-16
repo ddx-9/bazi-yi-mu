@@ -423,5 +423,149 @@
       <p style="margin-top:1rem;"><a href="https://github.com/ddx-9/bazi-yi-mu" target="_blank">GitHub 仓库</a></p>
     </footer>
   </div>
+  <section id="plan81" class="p81">
+  <h2>过年前小事计划</h2>
+  <p class="p81-sub" id="p81-sub"></p>
+  <div class="p81-today">
+    <div class="p81-date" id="p81-date"></div>
+    <div class="p81-task" id="p81-task"></div>
+    <button class="p81-btn" id="p81-done" type="button">今天做了</button>
+  </div>
+  <div class="p81-bar"><i id="p81-fill"></i></div>
+  <details class="p81-all">
+    <summary>查看全部 81 天</summary>
+    <ol id="p81-list"></ol>
+  </details>
+</section>
+
+<style>
+.p81{--g:#4f7a5e;--b:#3f6b8a;--bg:#f3f7f4;--tx:#1f2a24;max-width:640px;margin:40px auto;padding:20px;border-radius:16px;background:var(--bg);color:var(--tx);line-height:1.7;box-sizing:border-box}
+.p81 h2{margin:0 0 4px;font-size:1.25rem}
+.p81-sub{margin:0 0 14px;font-size:.85rem;opacity:.7}
+.p81-today{padding:16px;border-left:4px solid var(--g);background:#fff;border-radius:8px}
+.p81-date{font-size:.85rem;color:var(--b)}
+.p81-task{font-size:1.15rem;margin:6px 0 12px}
+.p81-btn{border:0;border-radius:999px;padding:8px 18px;background:var(--g);color:#fff;font-size:.95rem;cursor:pointer}
+.p81-btn:focus-visible{outline:3px solid var(--b);outline-offset:2px}
+.p81-btn.on{background:#9db8a6}
+.p81-bar{height:6px;background:#dbe6de;border-radius:3px;margin:16px 0}
+.p81-bar i{display:block;height:100%;width:0;background:var(--g);border-radius:3px}
+.p81-all summary{cursor:pointer;color:var(--b)}
+.p81-all ol{padding-left:2.2em;font-size:.92rem}
+.p81-all li.done{opacity:.45;text-decoration:line-through}
+.p81-all li.now{font-weight:600;color:var(--g)}
+@media (prefers-color-scheme:dark){.p81{--bg:#1c2420;--tx:#e6eee9;--g:#7fae8e;--b:#7fa9c7}.p81-today{background:#25302a}.p81-bar{background:#33423a}}
+</style>
+
+<script>
+(function(){
+var old=document.getElementById('daily81');if(old)old.style.display='none';
+var START=new Date(2026,10,18);
+var T=[
+"出门散步10分钟，不戴耳机。",
+"把手机相册里30张无用照片删除。",
+"做10个标准俯卧撑，可以分组完成。",
+"整理自己的床铺，把床单铺平。",
+"给一位家人打电话，聊5分钟。",
+"把钱包、口袋里的票据清理干净。",
+"靠墙站立5分钟，感受自己的体态。",
+"给自己拍一张近期的正面生活照。",
+"整理手机桌面，只保留常用应用。",
+"出门买一样自己喜欢但平时舍不得买的小东西，预算20元以内。",
+"把衣柜里3件不常穿的衣服整理出来。",
+"写下最近最困扰自己的三件事。",
+"睡前把手机放到离床一米以外的地方。",
+"连续步行15分钟。",
+"做15个俯卧撑，可以分组。",
+"用温水认真洗一次脸，并做好基础护肤。",
+"测量一次腰围，记录下来。",
+"做10分钟肩颈拉伸。",
+"把自己的鞋子清洁一双。",
+"今天喝水时使用一个固定水杯，记录喝了几杯。",
+"散步20分钟。",
+"做20个深蹲，动作标准优先。",
+"剪指甲，整理手部。",
+"今天吃一顿不看手机的饭。",
+"整理一次头发，尝试一个自己喜欢的发型。",
+"记录最近一周平均睡觉和起床时间。",
+"清理手机里一个长期不用的APP。",
+"记录目前银行卡和现金的总余额。",
+"做一次15分钟的房间清洁。",
+"散步15分钟，观察沿途三个以前没注意过的细节。",
+"给自己准备一顿简单的早餐。",
+"去一家从未去过的咖啡店或小店坐一会儿。",
+"写下2026年做过的五件值得肯定的小事。",
+"检查一次手机订阅，取消不需要的付费服务。",
+"做20个俯卧撑。",
+"把电脑桌面上的文件整理一次。",
+"听一首完整的音乐，不同时刷手机。",
+"给自己买一份不超过30元的小礼物。",
+"独自出门走走，至少30分钟。",
+"写下自己2027年最想改善的三个方面。",
+"整理一份自己的学历和资格证书电子档案。",
+"做一次20分钟的户外步行。",
+"写下自己目前最有价值的三项能力。",
+"给2026年写一段100字以内的年终总结。",
+"给2027年的自己写一封短信。",
+"去一个有自然风景的地方走走。",
+"整理手机备忘录，删除过期内容。",
+"找出一份以前的简历，检查联系方式和基本信息。",
+"做25个深蹲。",
+"认真阅读一篇医学专业文章的摘要。",
+"整理一次自己的衣服搭配，选出一套喜欢的穿搭。",
+"记录本月已经花掉的钱。",
+"给自己做一顿喜欢吃的饭。",
+"写下目前工作中最想改变的一件事。",
+"连续靠墙站立8分钟。",
+"学会一道以前没做过的简单菜。",
+"给一位老朋友发一条自然的问候。",
+"清理一次汽车内部，擦干净中控台。",
+"做30个俯卧撑，可以分组完成。",
+"去书店逛一圈，至少停留15分钟。",
+"记录一次自己的体重和腰围。",
+"整理自己的证件照和个人照片。",
+"今天不玩王者荣耀，留出时间给自己。",
+"出门晒太阳15分钟。",
+"把家里一个抽屉彻底整理干净。",
+"找一部一直想看的电影，认真看完。",
+"独自去吃一顿饭，不因为没人陪就放弃。",
+"写下最近一个月自己发生的三个变化。",
+"整理一次自己的职业规划，写下一个最现实的下一步。",
+"做一次20分钟的散步。",
+"删除手机里100张无用照片。",
+"做30个俯卧撑，可以分组完成。",
+"整理一次自己的银行卡、账单和支出记录。",
+"买一件春节期间想穿的新衣服或配饰，预算自行决定。",
+"给父母或家人做一件具体的小事。",
+"整理汽车后备箱或车内储物空间。",
+"写下自己2026年最遗憾的一件事，以及准备如何面对它。",
+"完成一次20分钟户外运动。",
+"给自己拍一张春节前的照片。",
+"写下这81天完成了多少件事。",
+"给自己买一份春节礼物，认真庆祝一下。"
+];
+var DAY=864e5, KEY='p81_done';
+var done={};try{done=JSON.parse(localStorage.getItem(KEY)||'{}')}catch(e){}
+function save(){try{localStorage.setItem(KEY,JSON.stringify(done))}catch(e){}}
+var now=new Date(), t0=new Date(now.getFullYear(),now.getMonth(),now.getDate());
+var idx=Math.round((t0-START)/DAY);
+var cur=Math.min(Math.max(idx,0),T.length-1);
+var $=function(i){return document.getElementById(i)};
+function fmt(i){var d=new Date(START.getTime()+i*DAY);return (d.getMonth()+1)+'月'+d.getDate()+'日'}
+function render(){
+  var n=Object.keys(done).length;
+  $('p81-sub').textContent=idx<0?'明天开始，共81天':(idx>=T.length?'已走完全部81天':'第 '+(idx+1)+' / 81 天')+' · 已完成 '+n+' 天';
+  $('p81-date').textContent=fmt(cur)+(idx<0?'（第一天）':'');
+  $('p81-task').textContent=T[cur];
+  var b=$('p81-done');b.className='p81-btn'+(done[cur]?' on':'');b.textContent=done[cur]?'已完成':'今天做了';
+  $('p81-fill').style.width=(n/T.length*100)+'%';
+  var html='';
+  T.forEach(function(s,i){html+='<li class="'+(done[i]?'done ':'')+(i===cur?'now':'')+'"><b>'+fmt(i)+'</b> '+s+'</li>'});
+  $('p81-list').innerHTML=html;
+}
+$('p81-done').onclick=function(){if(done[cur])delete done[cur];else done[cur]=1;save();render()};
+render();
+})();
+</script>
 </body>
 </html>
