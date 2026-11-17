@@ -5,5 +5,610 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>乙木人生 · 己卯癸酉乙亥丁丑</title>
   <meta name="description" content="1999年农历八月十一丑时生辰八字专属命理网站 · 每日中医方剂学习" />
-  <!-- content truncated for this simulation - use actual file -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;600;700&family=ZCOOL+XiaoWei&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --wood: #2d6a4f;
+      --wood-light: #40916c;
+      --earth: #bc6c25;
+      --water: #1d3557;
+      --fire: #e76f51;
+      --gold: #c9a227;
+      --bg: #0f1419;
+      --card: #1a2332;
+      --text: #e8e6e3;
+      --muted: #a0a8b0;
+      --accent: #52b788;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: 'Noto Serif SC', serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.7;
+      min-height: 100vh;
+      background-image: 
+        radial-gradient(ellipse at 20% 20%, rgba(45,106,79,0.15) 0%, transparent 50%),
+        radial-gradient(ellipse at 80% 80%, rgba(188,108,37,0.1) 0%, transparent 50%);
+    }
+    .container { max-width: 920px; margin: 0 auto; padding: 2rem 1.25rem 4rem; }
+    header {
+      text-align: center;
+      padding: 3rem 0 2.5rem;
+      position: relative;
+    }
+    header::after {
+      content: '';
+      position: absolute;
+      bottom: 0; left: 50%; transform: translateX(-50%);
+      width: 60px; height: 2px;
+      background: linear-gradient(90deg, transparent, var(--accent), transparent);
+    }
+    .badge {
+      display: inline-block;
+      font-size: 0.75rem;
+      letter-spacing: 0.15em;
+      color: var(--accent);
+      border: 1px solid var(--accent);
+      padding: 0.3rem 0.9rem;
+      border-radius: 999px;
+      margin-bottom: 1.2rem;
+      opacity: 0.9;
+    }
+    h1 {
+      font-family: 'ZCOOL XiaoWei', 'Noto Serif SC', serif;
+      font-size: clamp(2.2rem, 6vw, 3.2rem);
+      font-weight: 400;
+      letter-spacing: 0.08em;
+      margin-bottom: 0.6rem;
+      background: linear-gradient(135deg, #95d5b2, #52b788, #2d6a4f);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .subtitle {
+      color: var(--muted);
+      font-size: 1rem;
+      letter-spacing: 0.05em;
+    }
+    .pillars {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 0.9rem;
+      margin: 2.8rem 0 2.5rem;
+    }
+    .pillar {
+      background: var(--card);
+      border-radius: 16px;
+      padding: 1.4rem 0.6rem;
+      text-align: center;
+      border: 1px solid rgba(255,255,255,0.06);
+      transition: transform 0.25s, box-shadow 0.25s;
+      position: relative;
+      overflow: hidden;
+    }
+    .pillar:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 12px 30px rgba(0,0,0,0.35);
+    }
+    .pillar::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 3px;
+    }
+    .pillar.year::before { background: var(--earth); }
+    .pillar.month::before { background: var(--gold); }
+    .pillar.day::before { background: var(--wood-light); }
+    .pillar.hour::before { background: var(--fire); }
+    .pillar-label {
+      font-size: 0.7rem;
+      color: var(--muted);
+      letter-spacing: 0.12em;
+      margin-bottom: 0.7rem;
+    }
+    .pillar-gan {
+      font-size: 2.1rem;
+      font-weight: 700;
+      line-height: 1.1;
+    }
+    .pillar-zhi {
+      font-size: 1.7rem;
+      margin-top: 0.15rem;
+      opacity: 0.92;
+    }
+    .pillar-wuxing {
+      font-size: 0.72rem;
+      color: var(--muted);
+      margin-top: 0.7rem;
+      letter-spacing: 0.05em;
+    }
+    .section {
+      background: var(--card);
+      border-radius: 20px;
+      padding: 1.8rem 1.6rem;
+      margin-bottom: 1.5rem;
+      border: 1px solid rgba(255,255,255,0.05);
+    }
+    .section h2 {
+      font-size: 1.25rem;
+      font-weight: 600;
+      margin-bottom: 1.1rem;
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+    }
+    .section h2::before {
+      content: '';
+      width: 6px; height: 1.1em;
+      background: var(--accent);
+      border-radius: 3px;
+    }
+    .day-master {
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+      flex-wrap: wrap;
+    }
+    .day-master-icon {
+      width: 80px; height: 80px;
+      border-radius: 50%;
+      background: linear-gradient(145deg, #40916c, #2d6a4f);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2.4rem;
+      font-weight: 700;
+      flex-shrink: 0;
+      box-shadow: 0 8px 24px rgba(45,106,79,0.4);
+    }
+    .day-master-info h3 {
+      font-size: 1.35rem;
+      margin-bottom: 0.3rem;
+    }
+    .day-master-info p {
+      color: var(--muted);
+      font-size: 0.95rem;
+    }
+    .wuxing-bars {
+      display: flex;
+      flex-direction: column;
+      gap: 0.7rem;
+      margin-top: 0.5rem;
+    }
+    .wuxing-row {
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+    }
+    .wuxing-label {
+      width: 2.2rem;
+      font-size: 0.9rem;
+    }
+    .wuxing-track {
+      flex: 1;
+      height: 10px;
+      background: rgba(255,255,255,0.08);
+      border-radius: 999px;
+      overflow: hidden;
+    }
+    .wuxing-fill {
+      height: 100%;
+      border-radius: 999px;
+      transition: width 1s ease;
+    }
+    .wuxing-count {
+      width: 1.5rem;
+      text-align: right;
+      font-size: 0.85rem;
+      color: var(--muted);
+    }
+    .grid-2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.2rem;
+    }
+    @media (max-width: 640px) {
+      .pillars { grid-template-columns: repeat(2, 1fr); }
+      .grid-2 { grid-template-columns: 1fr; }
+      .day-master { flex-direction: column; text-align: center; }
+    }
+    .tag {
+      display: inline-block;
+      background: rgba(82,183,136,0.15);
+      color: var(--accent);
+      font-size: 0.78rem;
+      padding: 0.2rem 0.65rem;
+      border-radius: 6px;
+      margin: 0.2rem 0.3rem 0.2rem 0;
+    }
+    ul.clean {
+      list-style: none;
+      padding-left: 0;
+    }
+    ul.clean li {
+      position: relative;
+      padding-left: 1.3rem;
+      margin-bottom: 0.55rem;
+      color: #d1d5db;
+    }
+    ul.clean li::before {
+      content: '▸';
+      position: absolute;
+      left: 0;
+      color: var(--accent);
+      font-size: 0.85rem;
+    }
+    .quote {
+      border-left: 3px solid var(--accent);
+      padding: 0.8rem 1.2rem;
+      margin: 1.2rem 0;
+      background: rgba(82,183,136,0.06);
+      border-radius: 0 10px 10px 0;
+      font-style: italic;
+      color: #c5c9ce;
+    }
+    footer {
+      text-align: center;
+      padding: 2.5rem 1rem 1rem;
+      color: var(--muted);
+      font-size: 0.82rem;
+    }
+    footer a { color: var(--accent); text-decoration: none; }
+    .nayin {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.6rem;
+    }
+    .nayin span {
+      background: rgba(255,255,255,0.06);
+      padding: 0.35rem 0.8rem;
+      border-radius: 8px;
+      font-size: 0.85rem;
+    }
+    .formula-card {
+      background: linear-gradient(145deg, #1a2332, #152028);
+      border: 1px solid rgba(82,183,136,0.25);
+      border-radius: 20px;
+      padding: 1.8rem 1.6rem;
+      margin-bottom: 1.5rem;
+      position: relative;
+      overflow: hidden;
+    }
+    .formula-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 4px;
+      background: linear-gradient(90deg, var(--wood-light), var(--accent), #95d5b2);
+    }
+    .formula-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      flex-wrap: wrap;
+      gap: 0.8rem;
+      margin-bottom: 1.2rem;
+    }
+    .formula-title {
+      font-size: 1.5rem;
+      font-weight: 600;
+      color: #95d5b2;
+      letter-spacing: 0.05em;
+    }
+    .formula-meta {
+      font-size: 0.85rem;
+      color: var(--muted);
+    }
+    .formula-source {
+      display: inline-block;
+      background: rgba(82,183,136,0.12);
+      color: var(--accent);
+      font-size: 0.78rem;
+      padding: 0.2rem 0.7rem;
+      border-radius: 6px;
+      margin-top: 0.3rem;
+    }
+    .formula-body {
+      display: grid;
+      gap: 1rem;
+    }
+    .formula-item {
+      background: rgba(255,255,255,0.03);
+      border-radius: 12px;
+      padding: 1rem 1.1rem;
+    }
+    .formula-item h4 {
+      font-size: 0.9rem;
+      color: var(--accent);
+      margin-bottom: 0.45rem;
+      letter-spacing: 0.05em;
+    }
+    .formula-item p {
+      font-size: 0.95rem;
+      color: #d1d5db;
+      margin: 0;
+    }
+    .formula-nav {
+      display: flex;
+      gap: 0.6rem;
+      margin-top: 1.2rem;
+      flex-wrap: wrap;
+    }
+    .formula-nav button {
+      background: rgba(82,183,136,0.15);
+      border: 1px solid rgba(82,183,136,0.3);
+      color: var(--accent);
+      padding: 0.45rem 1rem;
+      border-radius: 999px;
+      font-size: 0.85rem;
+      cursor: pointer;
+      font-family: inherit;
+      transition: background 0.2s;
+    }
+    .formula-nav button:hover {
+      background: rgba(82,183,136,0.28);
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <div class="badge">生辰八字 · 专属命盘</div>
+      <h1>乙木人生</h1>
+      <p class="subtitle">己卯 · 癸酉 · 乙亥 · 丁丑<br>1999年农历八月十一 · 丑时 · 河北邯郸</p>
+    </header>
+
+    <section class="formula-card" id="daily-formula">
+      <div class="formula-header">
+        <div>
+          <div class="formula-title" id="f-name">加载中…</div>
+          <div class="formula-meta" id="f-date"></div>
+          <div class="formula-source" id="f-source"></div>
+        </div>
+      </div>
+      <div class="formula-body">
+        <div class="formula-item">
+          <h4>组成</h4>
+          <p id="f-compose"></p>
+        </div>
+        <div class="formula-item">
+          <h4>功效</h4>
+          <p id="f-effect"></p>
+        </div>
+        <div class="formula-item">
+          <h4>主治</h4>
+          <p id="f-indic"></p>
+        </div>
+        <div class="formula-item">
+          <h4>要点速记</h4>
+          <p id="f-key"></p>
+        </div>
+      </div>
+      <div class="formula-nav">
+        <button type="button" id="f-prev">← 前一天</button>
+        <button type="button" id="f-today">今天</button>
+        <button type="button" id="f-next">后一天 →</button>
+      </div>
+    </section>
+
+    <div class="pillars">
+      <div class="pillar year">
+        <div class="pillar-label">年柱</div>
+        <div class="pillar-gan">己</div>
+        <div class="pillar-zhi">卯</div>
+        <div class="pillar-wuxing">土 · 木</div>
+      </div>
+      <div class="pillar month">
+        <div class="pillar-label">月柱</div>
+        <div class="pillar-gan">癸</div>
+        <div class="pillar-zhi">酉</div>
+        <div class="pillar-wuxing">水 · 金</div>
+      </div>
+      <div class="pillar day">
+        <div class="pillar-label">日柱 · 日主</div>
+        <div class="pillar-gan">乙</div>
+        <div class="pillar-zhi">亥</div>
+        <div class="pillar-wuxing">木 · 水</div>
+      </div>
+      <div class="pillar hour">
+        <div class="pillar-label">时柱</div>
+        <div class="pillar-gan">丁</div>
+        <div class="pillar-zhi">丑</div>
+        <div class="pillar-wuxing">火 · 土</div>
+      </div>
+    </div>
+
+    <section class="section">
+      <h2>日主解读</h2>
+      <div class="day-master">
+        <div class="day-master-icon">乙</div>
+        <div class="day-master-info">
+          <h3>乙木 · 阴柔之木</h3>
+          <p>如藤蔓花草，柔韧而坚韧。不争锋芒，却能在夹缝中生长，适应力极强。生于酉月金旺之时，得亥水印星滋养，形成「水生木」的通关之势。</p>
+        </div>
+      </div>
+      <div class="quote">
+        「乙木虽柔，却能绕石而生；看似随风，实则根深。」
+      </div>
+      <p style="margin-top:1rem;color:var(--muted);font-size:0.95rem;">
+        你是那种外表温和、内心有主见的人。不喜欢硬碰硬，但一旦认准方向，会用持续的努力慢慢达成目标。适合需要耐心、细腻与长期积累的领域。
+      </p>
+    </section>
+
+    <section class="section">
+      <h2>五行分布</h2>
+      <div class="wuxing-bars">
+        <div class="wuxing-row">
+          <span class="wuxing-label">木</span>
+          <div class="wuxing-track"><div class="wuxing-fill" style="width:40%;background:var(--wood-light)"></div></div>
+          <span class="wuxing-count">2</span>
+        </div>
+        <div class="wuxing-row">
+          <span class="wuxing-label">火</span>
+          <div class="wuxing-track"><div class="wuxing-fill" style="width:20%;background:var(--fire)"></div></div>
+          <span class="wuxing-count">1</span>
+        </div>
+        <div class="wuxing-row">
+          <span class="wuxing-label">土</span>
+          <div class="wuxing-track"><div class="wuxing-fill" style="width:40%;background:var(--earth)"></div></div>
+          <span class="wuxing-count">2</span>
+        </div>
+        <div class="wuxing-row">
+          <span class="wuxing-label">金</span>
+          <div class="wuxing-track"><div class="wuxing-fill" style="width:20%;background:var(--gold)"></div></div>
+          <span class="wuxing-count">1</span>
+        </div>
+        <div class="wuxing-row">
+          <span class="wuxing-label">水</span>
+          <div class="wuxing-track"><div class="wuxing-fill" style="width:40%;background:#457b9d"></div></div>
+          <span class="wuxing-count">2</span>
+        </div>
+      </div>
+      <div class="nayin" style="margin-top:1.4rem;">
+        <span>年纳音 · 城头土</span>
+        <span>月纳音 · 剑锋金</span>
+        <span>日纳音 · 山头火</span>
+        <span>时纳音 · 涧下水</span>
+      </div>
+      <p style="margin-top:1.2rem;font-size:0.92rem;color:var(--muted);">
+        日主乙木身偏弱，月令酉金克身，但亥水印星有力，癸水透干生木，整体形成「印星通关」的格局。喜用神偏向<strong style="color:var(--accent)">水、木</strong>，土为财星可用，金不宜过旺。
+      </p>
+    </section>
+
+    <div class="grid-2">
+      <section class="section">
+        <h2>性格特质</h2>
+        <ul class="clean">
+          <li>外表温和，内心细腻敏感</li>
+          <li>适应力强，善于在变化中找平衡</li>
+          <li>有责任心，对亲近的人很护短</li>
+          <li>想法多，执行时偶尔犹豫</li>
+          <li>不喜欢冲突，但底线清晰</li>
+          <li>对美和氛围有较高要求</li>
+        </ul>
+      </section>
+      <section class="section">
+        <h2>适合方向</h2>
+        <ul class="clean">
+          <li>需要耐心与细节的工作</li>
+          <li>文化、设计、内容、咨询类</li>
+          <li>与水木相关的行业（教育、出版、园艺、互联网内容等）</li>
+          <li>可考虑长期积累型副业</li>
+          <li>人际关系中宜多交「水」属性贵人</li>
+        </ul>
+      </section>
+    </div>
+
+    <section class="section">
+      <h2>运势与建议</h2>
+      <p style="margin-bottom:1rem;">当前阶段（约2025-2035）大运走势与印星、财星互动较多，宜稳扎稳打，不宜过于冒进。</p>
+      <div style="display:flex;flex-wrap:wrap;gap:0.4rem;margin-bottom:1.2rem;">
+        <span class="tag">喜用水木</span>
+        <span class="tag">忌金过旺</span>
+        <span class="tag">财星可用</span>
+        <span class="tag">贵人多在北方与东方</span>
+      </div>
+      <ul class="clean">
+        <li><strong>事业</strong>：适合深耕专业，或转向需要沟通与创意的岗位。换工作宜选有稳定基础的机会。</li>
+        <li><strong>财运</strong>：正财为主，偏财可小试但不宜重注。积累比爆发更适合你。</li>
+        <li><strong>感情</strong>：日支亥为桃花，感情运不弱，但需注意沟通与边界。主动一点会更好。</li>
+        <li><strong>健康</strong>：注意肝胆、睡眠与情绪波动。丑时出生，可适当关注脾胃与湿气。</li>
+        <li><strong>颜色与方位</strong>：多穿绿色、蓝色系；办公或学习可坐北朝南，或朝东。</li>
+      </ul>
+    </section>
+
+    <section class="section">
+      <h2>给自己的一句话</h2>
+      <div class="quote" style="font-size:1.05rem;line-height:1.8;">
+        你不是要成为最锋利的刀，而是要成为那棵能绕过石头、依然向上的藤。
+        柔软不是软弱，是另一种强大。慢慢来，你的路会越走越宽。
+      </div>
+    </section>
+
+    <footer>
+      <p>基于农历1999年八月十一 丑时（公历1999-09-20 01:30）排出</p>
+      <p style="margin-top:0.4rem;">仅供参考娱乐 · 命运由自己书写</p>
+      <p style="margin-top:1rem;"><a href="https://github.com/ddx-9/bazi-yi-mu" target="_blank">GitHub 仓库</a></p>
+    </footer>
+  </div>
+
+  <script>
+  (function(){
+    var FORMULAS = [
+      {name:"桂枝汤", source:"《伤寒论》", compose:"桂枝9g、芍药9g、生姜9g、大枣12枚、炙甘草6g", effect:"解肌发表，调和营卫", indic:"外感风寒表虚证。恶风发热、汗出、头痛、鼻鸣干呕、苔薄白、脉浮缓", key:"调和营卫第一方。有汗用桂枝，无汗用麻黄。"},
+      {name:"麻黄汤", source:"《伤寒论》", compose:"麻黄9g、桂枝6g、杏仁9g、炙甘草3g", effect:"发汗解表，宣肺平喘", indic:"外感风寒表实证。恶寒发热、无汗、头身疼痛、喘、脉浮紧", key:"发汗解表第一方。无汗而喘用麻黄汤。"},
+      {name:"小柴胡汤", source:"《伤寒论》", compose:"柴胡24g、黄芩9g、人参9g、半夏9g、生姜9g、大枣12枚、炙甘草9g", effect:"和解少阳", indic:"少阳证。往来寒热、胸胁苦满、默默不欲饮食、心烦喜呕、口苦咽干目眩", key:"和解少阳代表方。"},
+      {name:"四君子汤", source:"《太平惠民和剂局方》", compose:"人参、白术、茯苓、炙甘草各等分", effect:"益气健脾", indic:"脾胃气虚证。面色萎白、语声低微、气短乏力、食少便溏、脉虚弱", key:"补气基础方。四君子 → 六君子 → 香砂六君子。"},
+      {name:"四物汤", source:"《太平惠民和剂局方》", compose:"熟地黄、当归、白芍、川芎各等分", effect:"补血调血", indic:"营血虚滞证。头晕目眩、心悸失眠、面色无华、月经不调、痛经", key:"补血基础方。"},
+      {name:"六味地黄丸", source:"《小儿药证直诀》", compose:"熟地黄24g、山萸肉12g、山药12g、泽泻9g、牡丹皮9g、茯苓9g", effect:"滋阴补肾", indic:"肾阴虚证。腰膝酸软、头晕耳鸣、盗汗、遗精、骨蒸潮热、舌红少苔", key:"三补三泻。补肾阴基础方。"},
+      {name:"逍遥散", source:"《太平惠民和剂局方》", compose:"柴胡、当归、白芍、白术、茯苓、炙甘草、生姜、薄荷", effect:"疏肝解郁，养血健脾", indic:"肝郁血虚脾弱证。两胁作痛、神疲食少、月经不调、乳房胀痛", key:"疏肝代表方。"},
+      {name:"补中益气汤", source:"《脾胃论》", compose:"黄芪、炙甘草、人参、当归、陈皮、升麻、柴胡、白术", effect:"补中益气，升阳举陷", indic:"脾胃气虚、气虚下陷证。少气懒言、体倦乏力、脱肛、子宫脱垂、久泻", key:"李东垣补中升阳代表方。"},
+      {name:"归脾汤", source:"《济生方》", compose:"白术、茯神、黄芪、龙眼肉、酸枣仁、人参、木香、炙甘草、当归、远志", effect:"益气补血，健脾养心", indic:"心脾两虚证。心悸怔忡、健忘失眠、体倦食少、面色萎黄、崩漏", key:"心脾同治。"},
+      {name:"生脉散", source:"《医学启源》", compose:"人参、麦冬、五味子", effect:"益气生津，敛阴止汗", indic:"气阴两伤证。体倦气短、咽干口渴、汗多、脉虚细", key:"气阴双补。"},
+      {name:"银翘散", source:"《温病条辨》", compose:"金银花、连翘、桔梗、薄荷、竹叶、生甘草、荆芥穗、淡豆豉、牛蒡子", effect:"辛凉透表，清热解毒", indic:"温病初起。发热、微恶风寒、无汗或有汗不畅、头痛口渴、咳嗽咽痛", key:"辛凉解表代表方。"},
+      {name:"白虎汤", source:"《伤寒论》", compose:"石膏、知母、甘草、粳米", effect:"清热生津", indic:"气分热盛证。壮热面赤、烦渴引饮、汗出恶热、脉洪大有力", key:"清热生津代表方。"},
+      {name:"龙胆泻肝汤", source:"《医方集解》", compose:"龙胆草、黄芩、栀子、泽泻、木通、车前子、当归、生地、柴胡、甘草", effect:"清泻肝胆实火，清利肝经湿热", indic:"肝胆实火或湿热。头痛目赤、胁痛口苦、耳聋耳肿、阴肿阴痒、带下黄臭", key:"肝经湿热/实火代表方。"},
+      {name:"大承气汤", source:"《伤寒论》", compose:"大黄、厚朴、枳实、芒硝", effect:"峻下热结", indic:"阳明腑实证。痞、满、燥、实。潮热谵语、手足濈然汗出、腹痛拒按、脉沉实", key:"苦寒峻下。"},
+      {name:"理中丸", source:"《伤寒论》", compose:"人参、干姜、白术、炙甘草", effect:"温中祛寒，补气健脾", indic:"脾胃虚寒证。脘腹疼痛、喜温喜按、呕吐便溏、畏寒肢冷、口不渴", key:"温中补虚基础方。"},
+      {name:"四逆汤", source:"《伤寒论》", compose:"附子、干姜、炙甘草", effect:"回阳救逆", indic:"少阴病。四肢厥逆、恶寒蜷卧、神衰欲寐、面色苍白、脉微细", key:"回阳救逆第一方。"},
+      {name:"真武汤", source:"《伤寒论》", compose:"茯苓、芍药、白术、生姜、附子", effect:"温阳利水", indic:"阳虚水泛证。畏寒肢厥、小便不利、心下悸、头眩、身瞤动、浮肿", key:"温阳利水代表方。"},
+      {name:"五苓散", source:"《伤寒论》", compose:"猪苓、泽泻、白术、茯苓、桂枝", effect:"利水渗湿，温阳化气", indic:"蓄水证或水湿内停。小便不利、头痛微热、烦渴欲饮、水入即吐、或水肿", key:"利水化气代表方。"},
+      {name:"二陈汤", source:"《太平惠民和剂局方》", compose:"半夏、橘红、白茯苓、炙甘草", effect:"燥湿化痰，理气和中", indic:"湿痰证。咳嗽痰多、色白易咯、胸膈痞闷、恶心呕吐、肢体困倦", key:"治痰基础方。"},
+      {name:"温胆汤", source:"《三因极一病证方论》", compose:"半夏、竹茹、枳实、陈皮、炙甘草、茯苓、生姜、大枣", effect:"理气化痰，清胆和胃", indic:"胆郁痰扰证。胆怯易惊、虚烦不宁、失眠多梦、呕吐呃逆、癫痫", key:"化痰和胃安神。"},
+      {name:"半夏厚朴汤", source:"《金匮要略》", compose:"半夏、厚朴、茯苓、生姜、苏叶", effect:"行气散结，降逆化痰", indic:"梅核气。咽中如有物阻、咯吐不出、吞咽不下、胸膈满闷", key:"梅核气专方。"},
+      {name:"血府逐瘀汤", source:"《医林改错》", compose:"桃仁、红花、当归、生地、川芎、赤芍、牛膝、桔梗、柴胡、枳壳、甘草", effect:"活血化瘀，行气止痛", indic:"胸中血瘀证。胸痛、头痛日久、痛如针刺、或呃逆日久、失眠多梦", key:"活血化瘀代表方。"},
+      {name:"补阳还五汤", source:"《医林改错》", compose:"黄芪120g、当归尾、赤芍、地龙、川芎、红花、桃仁", effect:"补气，活血，通络", indic:"中风后遗症。半身不遂、口眼歪斜、语言謇涩、口角流涎、下肢痿废", key:"大补元气以活血。"},
+      {name:"金匮肾气丸", source:"《金匮要略》", compose:"干地黄、山药、山茱萸、泽泻、茯苓、牡丹皮、桂枝、附子", effect:"补肾助阳", indic:"肾阳不足证。腰痛脚软、下半身常有冷感、少腹拘急、小便不利或反多", key:"阴中求阳。六味加桂附。"},
+      {name:"天王补心丹", source:"《摄生秘剖》", compose:"生地、人参、丹参、元参、白茯苓、五味子、远志、桔梗、当归、天冬、麦冬、柏子仁、酸枣仁", effect:"滋阴养血，补心安神", indic:"阴虚血少、神志不安。心悸失眠、虚烦神疲、梦遗健忘、大便干燥、口舌生疮", key:"滋阴安神代表方。"},
+      {name:"酸枣仁汤", source:"《金匮要略》", compose:"酸枣仁、甘草、知母、茯苓、川芎", effect:"养血安神，清热除烦", indic:"肝血不足、虚热内扰。虚烦失眠、心悸盗汗、头目眩晕、咽干口燥", key:"养血安神。"},
+      {name:"玉屏风散", source:"《究原方》", compose:"黄芪、白术、防风", effect:"益气固表止汗", indic:"表虚自汗。汗出恶风、面色㿠白、舌淡苔薄白、脉浮虚；易感风邪", key:"益气固表。"},
+      {name:"独活寄生汤", source:"《备急千金要方》", compose:"独活、桑寄生、杜仲、牛膝、细辛、秦艽、茯苓、肉桂心、防风、川芎、人参、甘草、当归、芍药、干地黄", effect:"祛风湿，止痹痛，益肝肾，补气血", indic:"痹证日久、肝肾两虚、气血不足。腰膝疼痛、肢节屈伸不利、或麻木不仁", key:"扶正祛邪。久痹肝肾不足。"},
+      {name:"仙方活命饮", source:"《校注妇人良方》", compose:"白芷、贝母、防风、赤芍、当归尾、甘草、皂角刺、穿山甲、天花粉、乳香、没药、金银花、陈皮", effect:"清热解毒，消肿溃坚，活血止痛", indic:"阳证痈疡肿毒初起。红肿热痛、或身热凛寒、苔薄白或黄、脉数有力", key:"疮疡肿毒第一方。"},
+      {name:"百合固金汤", source:"《慎斋遗书》", compose:"百合、熟地、生地、当归、白芍、甘草、桔梗、玄参、贝母、麦冬", effect:"养阴润肺，化痰止咳", indic:"肺肾阴虚。咳嗽气喘、痰中带血、咽喉燥痛、手足心热、骨蒸盗汗", key:"养阴润肺。"}
+    ];
+
+    var offset = 0;
+
+    function dayOfYear(d) {
+      var start = new Date(d.getFullYear(), 0, 0);
+      var diff = d - start;
+      return Math.floor(diff / 864e5);
+    }
+
+    function getDateByOffset(off) {
+      var d = new Date();
+      d.setHours(0,0,0,0);
+      d.setDate(d.getDate() + off);
+      return d;
+    }
+
+    function renderFormula() {
+      var d = getDateByOffset(offset);
+      var idx = dayOfYear(d) % FORMULAS.length;
+      var f = FORMULAS[idx];
+      var dateStr = d.getFullYear() + '年' + (d.getMonth()+1) + '月' + d.getDate() + '日';
+      if (offset === 0) dateStr += ' · 今日一方';
+      else if (offset < 0) dateStr += ' · 前' + (-offset) + '天';
+      else dateStr += ' · 后' + offset + '天';
+
+      document.getElementById('f-name').textContent = f.name;
+      document.getElementById('f-date').textContent = dateStr;
+      document.getElementById('f-source').textContent = f.source;
+      document.getElementById('f-compose').textContent = f.compose;
+      document.getElementById('f-effect').textContent = f.effect;
+      document.getElementById('f-indic').textContent = f.indic;
+      document.getElementById('f-key').textContent = f.key;
+    }
+
+    document.getElementById('f-prev').onclick = function(){ offset--; renderFormula(); };
+    document.getElementById('f-today').onclick = function(){ offset = 0; renderFormula(); };
+    document.getElementById('f-next').onclick = function(){ offset++; renderFormula(); };
+
+    renderFormula();
+  })();
+  </script>
+</body>
 </html>
