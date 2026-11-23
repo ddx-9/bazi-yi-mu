@@ -1,0 +1,644 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>尊贵的杜杜熊 · 每日一方</title>
+  <meta name="description" content="尊贵的杜杜熊 · 每日学习一首经典中医方剂 · 过年前81件小事" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;600;700&family=ZCOOL+XiaoWei&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --wood: #2d6a4f;
+      --wood-light: #40916c;
+      --earth: #bc6c25;
+      --water: #1d3557;
+      --fire: #e76f51;
+      --gold: #c9a227;
+      --bg: #0f1419;
+      --card: #1a2332;
+      --text: #e8e6e3;
+      --muted: #a0a8b0;
+      --accent: #52b788;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: 'Noto Serif SC', serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.7;
+      min-height: 100vh;
+      background-image: 
+        radial-gradient(ellipse at 20% 20%, rgba(45,106,79,0.15) 0%, transparent 50%),
+        radial-gradient(ellipse at 80% 80%, rgba(188,108,37,0.1) 0%, transparent 50%);
+    }
+    .container { max-width: 860px; margin: 0 auto; padding: 2rem 1.25rem 4rem; }
+    header {
+      text-align: center;
+      padding: 2.8rem 0 2rem;
+      position: relative;
+    }
+    header::after {
+      content: '';
+      position: absolute;
+      bottom: 0; left: 50%; transform: translateX(-50%);
+      width: 60px; height: 2px;
+      background: linear-gradient(90deg, transparent, var(--accent), transparent);
+    }
+    .badge {
+      display: inline-block;
+      font-size: 0.75rem;
+      letter-spacing: 0.15em;
+      color: var(--accent);
+      border: 1px solid var(--accent);
+      padding: 0.3rem 0.9rem;
+      border-radius: 999px;
+      margin-bottom: 1.1rem;
+      opacity: 0.9;
+    }
+    h1 {
+      font-family: 'ZCOOL XiaoWei', 'Noto Serif SC', serif;
+      font-size: clamp(2rem, 6vw, 2.9rem);
+      font-weight: 400;
+      letter-spacing: 0.08em;
+      margin-bottom: 0.5rem;
+      background: linear-gradient(135deg, #95d5b2, #52b788, #2d6a4f);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .subtitle {
+      color: var(--muted);
+      font-size: 1rem;
+      letter-spacing: 0.05em;
+    }
+    .formula-card {
+      background: linear-gradient(145deg, #1a2332, #152028);
+      border: 1px solid rgba(82,183,136,0.25);
+      border-radius: 20px;
+      padding: 1.8rem 1.6rem;
+      margin: 1.8rem 0 1.5rem;
+      position: relative;
+      overflow: hidden;
+    }
+    .formula-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 4px;
+      background: linear-gradient(90deg, var(--wood-light), var(--accent), #95d5b2);
+    }
+    .formula-title {
+      font-size: 1.55rem;
+      font-weight: 600;
+      color: #95d5b2;
+      letter-spacing: 0.06em;
+      margin-bottom: 0.25rem;
+    }
+    .formula-meta {
+      font-size: 0.85rem;
+      color: var(--muted);
+      margin-bottom: 0.35rem;
+    }
+    .formula-source {
+      display: inline-block;
+      background: rgba(82,183,136,0.12);
+      color: var(--accent);
+      font-size: 0.78rem;
+      padding: 0.2rem 0.7rem;
+      border-radius: 6px;
+    }
+    .formula-body {
+      display: grid;
+      gap: 0.9rem;
+      margin-top: 1.3rem;
+    }
+    .formula-item {
+      background: rgba(255,255,255,0.03);
+      border-radius: 12px;
+      padding: 1rem 1.1rem;
+    }
+    .formula-item h4 {
+      font-size: 0.88rem;
+      color: var(--accent);
+      margin-bottom: 0.4rem;
+      letter-spacing: 0.05em;
+    }
+    .formula-item p {
+      font-size: 0.95rem;
+      color: #d1d5db;
+      margin: 0;
+      line-height: 1.65;
+    }
+    .formula-item.story {
+      border-left: 3px solid var(--accent);
+      background: rgba(82,183,136,0.07);
+    }
+    .formula-item.story h4 {
+      color: #95d5b2;
+    }
+    .formula-nav {
+      display: flex;
+      gap: 0.6rem;
+      margin-top: 1.3rem;
+      flex-wrap: wrap;
+    }
+    .formula-nav button {
+      background: rgba(82,183,136,0.15);
+      border: 1px solid rgba(82,183,136,0.3);
+      color: var(--accent);
+      padding: 0.45rem 1rem;
+      border-radius: 999px;
+      font-size: 0.85rem;
+      cursor: pointer;
+      font-family: inherit;
+      transition: background 0.2s;
+    }
+    .formula-nav button:hover {
+      background: rgba(82,183,136,0.28);
+    }
+    .section {
+      background: var(--card);
+      border-radius: 18px;
+      padding: 1.5rem 1.4rem;
+      margin-bottom: 1.3rem;
+      border: 1px solid rgba(255,255,255,0.05);
+    }
+    .section h2 {
+      font-size: 1.15rem;
+      font-weight: 600;
+      margin-bottom: 0.9rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    .section h2::before {
+      content: '';
+      width: 5px; height: 1em;
+      background: var(--accent);
+      border-radius: 3px;
+    }
+    .quote {
+      border-left: 3px solid var(--accent);
+      padding: 0.7rem 1.1rem;
+      margin: 0.8rem 0;
+      background: rgba(82,183,136,0.06);
+      border-radius: 0 10px 10px 0;
+      font-style: italic;
+      color: #c5c9ce;
+      font-size: 0.95rem;
+    }
+    footer {
+      text-align: center;
+      padding: 2.2rem 1rem 1rem;
+      color: var(--muted);
+      font-size: 0.82rem;
+    }
+    footer a { color: var(--accent); text-decoration: none; }
+    .plan81 {
+      background: var(--card);
+      border: 1px solid rgba(82,183,136,0.2);
+      border-radius: 20px;
+      padding: 1.6rem 1.5rem;
+      margin: 1.5rem 0 1.5rem;
+    }
+    .plan81 h2 {
+      font-size: 1.2rem;
+      font-weight: 600;
+      margin-bottom: 0.35rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    .plan81 h2::before {
+      content: '';
+      width: 5px; height: 1em;
+      background: var(--accent);
+      border-radius: 3px;
+    }
+    .plan81-sub {
+      font-size: 0.85rem;
+      color: var(--muted);
+      margin-bottom: 1.1rem;
+    }
+    .plan81-today {
+      background: rgba(82,183,136,0.08);
+      border-left: 4px solid var(--accent);
+      border-radius: 0 12px 12px 0;
+      padding: 1.1rem 1.2rem;
+      margin-bottom: 1rem;
+    }
+    .plan81-date {
+      font-size: 0.82rem;
+      color: var(--accent);
+      margin-bottom: 0.35rem;
+    }
+    .plan81-task {
+      font-size: 1.08rem;
+      color: var(--text);
+      margin-bottom: 0.9rem;
+      line-height: 1.5;
+    }
+    .plan81-btn {
+      border: 0;
+      border-radius: 999px;
+      padding: 0.5rem 1.3rem;
+      background: var(--accent);
+      color: #0f1419;
+      font-size: 0.9rem;
+      font-family: inherit;
+      cursor: pointer;
+      font-weight: 600;
+      transition: opacity 0.2s;
+    }
+    .plan81-btn:hover { opacity: 0.9; }
+    .plan81-btn.on {
+      background: rgba(82,183,136,0.35);
+      color: var(--accent);
+    }
+    .plan81-bar {
+      height: 6px;
+      background: rgba(255,255,255,0.08);
+      border-radius: 3px;
+      margin: 1rem 0 0.6rem;
+      overflow: hidden;
+    }
+    .plan81-bar i {
+      display: block;
+      height: 100%;
+      width: 0;
+      background: linear-gradient(90deg, var(--wood-light), var(--accent));
+      border-radius: 3px;
+      transition: width 0.4s ease;
+    }
+    .plan81-all { margin-top: 0.8rem; }
+    .plan81-all summary {
+      cursor: pointer;
+      color: var(--accent);
+      font-size: 0.9rem;
+      list-style: none;
+    }
+    .plan81-all summary::-webkit-details-marker { display: none; }
+    .plan81-all ol {
+      padding-left: 1.6em;
+      margin-top: 0.8rem;
+      font-size: 0.9rem;
+      color: #c5c9ce;
+    }
+    .plan81-all li {
+      margin-bottom: 0.45rem;
+      padding-left: 0.3rem;
+    }
+    .plan81-all li.done {
+      opacity: 0.45;
+      text-decoration: line-through;
+    }
+    .plan81-all li.now {
+      font-weight: 600;
+      color: var(--accent);
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <div class="badge">每日一方 · 中医学习</div>
+      <h1>尊贵的杜杜熊</h1>
+      <p class="subtitle">每天学一首经典中医方剂</p>
+    </header>
+
+    <section class="formula-card" id="daily-formula">
+      <div class="formula-title" id="f-name">加载中…</div>
+      <div class="formula-meta" id="f-date"></div>
+      <div class="formula-source" id="f-source"></div>
+      <div class="formula-body">
+        <div class="formula-item story">
+          <h4>方名由来 / 小故事</h4>
+          <p id="f-story"></p>
+        </div>
+        <div class="formula-item">
+          <h4>组成</h4>
+          <p id="f-compose"></p>
+        </div>
+        <div class="formula-item">
+          <h4>功效</h4>
+          <p id="f-effect"></p>
+        </div>
+        <div class="formula-item">
+          <h4>主治</h4>
+          <p id="f-indic"></p>
+        </div>
+        <div class="formula-item">
+          <h4>要点速记</h4>
+          <p id="f-key"></p>
+        </div>
+      </div>
+      <div class="formula-nav">
+        <button type="button" id="f-prev">← 前一天</button>
+        <button type="button" id="f-today">今天</button>
+        <button type="button" id="f-next">后一天 →</button>
+      </div>
+    </section>
+
+    <section class="plan81" id="plan81">
+      <h2>过年前小事计划</h2>
+      <p class="plan81-sub" id="p81-sub"></p>
+      <div class="plan81-today">
+        <div class="plan81-date" id="p81-date"></div>
+        <div class="plan81-task" id="p81-task"></div>
+        <button class="plan81-btn" id="p81-done" type="button">今天做了</button>
+      </div>
+      <div class="plan81-bar"><i id="p81-fill"></i></div>
+      <details class="plan81-all">
+        <summary>查看全部 81 天 ▾</summary>
+        <ol id="p81-list"></ol>
+      </details>
+    </section>
+
+    <section class="section">
+      <h2>给自己的一句话</h2>
+      <div class="quote" id="daily-quote">
+        <div id="quote-zh" style="margin-bottom:0.45rem;font-style:normal;color:var(--text);"></div>
+        <div id="quote-en" style="font-size:0.88rem;opacity:0.85;font-style:italic;"></div>
+      </div>
+    </section>
+
+    <footer>
+      <p>尊贵的杜杜熊 · 每日一方</p>
+      <p style="margin-top:0.4rem;">仅供学习参考 · 请勿自行用药</p>
+      <p style="margin-top:1rem;"><a href="https://github.com/ddx-9/bazi-yi-mu" target="_blank">GitHub 仓库</a></p>
+    </footer>
+  </div>
+
+  <script>
+  (function(){
+    var FORMULAS = [
+      {name:"桂枝汤", source:"《伤寒论》", compose:"桂枝9g、芍药9g、生姜9g、大枣12枚、炙甘草6g", effect:"解肌发表，调和营卫", indic:"外感风寒表虚证。恶风发热、汗出、头痛、鼻鸣干呕、苔薄白、脉浮缓", key:"调和营卫第一方。有汗用桂枝，无汗用麻黄。", story:"张仲景《伤寒论》开篇第一方。桂枝辛温解肌，芍药酸寒敛营，一散一收，调和营卫。被誉为「群方之冠」，后世无数方从此化裁而来。"},
+      {name:"麻黄汤", source:"《伤寒论》", compose:"麻黄9g、桂枝6g、杏仁9g、炙甘草3g", effect:"发汗解表，宣肺平喘", indic:"外感风寒表实证。恶寒发热、无汗、头身疼痛、喘、脉浮紧", key:"发汗解表第一方。无汗而喘用麻黄汤。", story:"仲景治伤寒表实无汗之主方。麻黄开腠发汗，桂枝助其解表，杏仁降肺气，甘草调和。与桂枝汤并称「麻桂」，一开一合，表证总纲。"},
+      {name:"小柴胡汤", source:"《伤寒论》", compose:"柴胡24g、黄芩9g、人参9g、半夏9g、生姜9g、大枣12枚、炙甘草9g", effect:"和解少阳", indic:"少阳证。往来寒热、胸胁苦满、默默不欲饮食、心烦喜呕、口苦咽干目眩", key:"和解少阳代表方。", story:"少阳病主方。柴胡疏少阳之郁，黄芩清少阳之热，人参、大枣、甘草扶正，半夏、生姜和胃。后世「和解法」由此确立，被誉为「少阳枢机」之方。"},
+      {name:"四君子汤", source:"《太平惠民和剂局方》", compose:"人参、白术、茯苓、炙甘草各等分", effect:"益气健脾", indic:"脾胃气虚证。面色萎白、语声低微、气短乏力、食少便溏、脉虚弱", key:"补气基础方。四君子 → 六君子 → 香砂六君子。", story:"人参、白术、茯苓、甘草四药，药性平和中正，如君子之德，故名「四君子」。后世补气方多从此加减，是脾胃气虚的基础方。"},
+      {name:"四物汤", source:"《太平惠民和剂局方》", compose:"熟地黄、当归、白芍、川芎各等分", effect:"补血调血", indic:"营血虚滞证。头晕目眩、心悸失眠、面色无华、月经不调、痛经", key:"补血基础方。", story:"熟地补血、当归活血、白芍敛血、川芎行血，四药相合，补中有动，被誉为「血家百病此方通」。妇科调经多从此化裁。"},
+      {name:"六味地黄丸", source:"《小儿药证直诀》", compose:"熟地黄24g、山萸肉12g、山药12g、泽泻9g、牡丹皮9g、茯苓9g", effect:"滋阴补肾", indic:"肾阴虚证。腰膝酸软、头晕耳鸣、盗汗、遗精、骨蒸潮热、舌红少苔", key:"三补三泻。补肾阴基础方。", story:"钱乙从《金匮》肾气丸化裁而来，去桂附，专补肾阴。熟地、山萸、山药为三补，泽泻、丹皮、茯苓为三泻，补中有泻，滋而不腻，成为后世补阴第一方。"},
+      {name:"逍遥散", source:"《太平惠民和剂局方》", compose:"柴胡、当归、白芍、白术、茯苓、炙甘草、生姜、薄荷", effect:"疏肝解郁，养血健脾", indic:"肝郁血虚脾弱证。两胁作痛、神疲食少、月经不调、乳房胀痛", key:"疏肝代表方。", story:"「逍遥」取自《庄子》，意指心无挂碍、自由自在。肝郁则气滞，气滞则血虚脾弱，此方疏肝养血健脾，使肝气得舒、气血得畅，身心得以逍遥。"},
+      {name:"补中益气汤", source:"《脾胃论》", compose:"黄芪、炙甘草、人参、当归、陈皮、升麻、柴胡、白术", effect:"补中益气，升阳举陷", indic:"脾胃气虚、气虚下陷证。少气懒言、体倦乏力、脱肛、子宫脱垂、久泻", key:"李东垣补中升阳代表方。", story:"李东垣创制。他认为「脾胃内伤，百病由生」，用黄芪大补中气，升麻、柴胡升举清阳，使下陷之气得升。后世治气虚下陷、内脏下垂多从此方。"},
+      {name:"归脾汤", source:"《济生方》", compose:"白术、茯神、黄芪、龙眼肉、酸枣仁、人参、木香、炙甘草、当归、远志", effect:"益气补血，健脾养心", indic:"心脾两虚证。心悸怔忡、健忘失眠、体倦食少、面色萎黄、崩漏", key:"心脾同治。", story:"「归脾」意指使心血归于脾、脾气归于心，心脾两脏同补。思虑过度伤及心脾，此方益气生血、健脾养心，是心脾两虚失眠、健忘的经典方。"},
+      {name:"生脉散", source:"《医学启源》", compose:"人参、麦冬、五味子", effect:"益气生津，敛阴止汗", indic:"气阴两伤证。体倦气短、咽干口渴、汗多、脉虚细", key:"气阴双补。", story:"人参大补元气，麦冬养阴生津，五味子酸敛止汗。三药合用，气阴双补，能使将绝之脉复生，故名「生脉」。暑热伤气阴或久咳肺虚时常用。"},
+      {name:"银翘散", source:"《温病条辨》", compose:"金银花、连翘、桔梗、薄荷、竹叶、生甘草、荆芥穗、淡豆豉、牛蒡子", effect:"辛凉透表，清热解毒", indic:"温病初起。发热、微恶风寒、无汗或有汗不畅、头痛口渴、咳嗽咽痛", key:"辛凉解表代表方。", story:"吴鞠通创制。金银花、连翘清热解毒为君，配辛凉透表之品，专治温病初起。与桑菊饮并称温病解表两大主方，一偏解毒，一偏宣肺。"},
+      {name:"白虎汤", source:"《伤寒论》", compose:"石膏、知母、甘草、粳米", effect:"清热生津", indic:"气分热盛证。壮热面赤、烦渴引饮、汗出恶热、脉洪大有力", key:"清热生津代表方。", story:"白虎为西方金神，主清肃。本方清热力量峻猛，如白虎之威，故名。石膏清热泻火，知母滋阴润燥，粳米、甘草护胃，是气分大热的经典方。"},
+      {name:"龙胆泻肝汤", source:"《医方集解》", compose:"龙胆草、黄芩、栀子、泽泻、木通、车前子、当归、生地、柴胡、甘草", effect:"清泻肝胆实火，清利肝经湿热", indic:"肝胆实火或湿热。头痛目赤、胁痛口苦、耳聋耳肿、阴肿阴痒、带下黄臭", key:"肝经湿热/实火代表方。", story:"龙胆草大苦大寒，专泻肝胆实火，故以「龙胆」名方。配伍清利湿热、养血柔肝之品，使泻火而不伤阴，是肝经实火湿热的代表方。"},
+      {name:"大承气汤", source:"《伤寒论》", compose:"大黄、厚朴、枳实、芒硝", effect:"峻下热结", indic:"阳明腑实证。痞、满、燥、实。潮热谵语、手足濈然汗出、腹痛拒按、脉沉实", key:"苦寒峻下。", story:"「承气」意为承顺胃气下行。大黄攻下，芒硝软坚，枳实、厚朴行气除满，四药合用，峻下热结，使燥屎得下、胃气得承。是攻下法的代表方。"},
+      {name:"理中丸", source:"《伤寒论》", compose:"人参、干姜、白术、炙甘草", effect:"温中祛寒，补气健脾", indic:"脾胃虚寒证。脘腹疼痛、喜温喜按、呕吐便溏、畏寒肢冷、口不渴", key:"温中补虚基础方。", story:"「理中」即调理中焦脾胃。干姜温中祛寒，人参、白术、甘草补气健脾，使中焦阳气得复、运化得健。是脾胃虚寒的基础方，可丸可汤。"},
+      {name:"四逆汤", source:"《伤寒论》", compose:"附子、干姜、炙甘草", effect:"回阳救逆", indic:"少阴病。四肢厥逆、恶寒蜷卧、神衰欲寐、面色苍白、脉微细", key:"回阳救逆第一方。", story:"「四逆」指四肢厥逆。附子大辛大热回阳，干姜温中助阳，甘草缓和药性。三药合用，能救将绝之阳，是回阳救逆的第一方，危急时救急要药。"},
+      {name:"真武汤", source:"《伤寒论》", compose:"茯苓、芍药、白术、生姜、附子", effect:"温阳利水", indic:"阳虚水泛证。畏寒肢厥、小便不利、心下悸、头眩、身瞤动、浮肿", key:"温阳利水代表方。", story:"真武即玄武，北方水神。本方温阳利水，如真武坐镇北方、统御水气，故名。附子温肾阳，茯苓、白术利水健脾，是阳虚水泛的经典方。"},
+      {name:"五苓散", source:"《伤寒论》", compose:"猪苓、泽泻、白术、茯苓、桂枝", effect:"利水渗湿，温阳化气", indic:"蓄水证或水湿内停。小便不利、头痛微热、烦渴欲饮、水入即吐、或水肿", key:"利水化气代表方。", story:"五药合用，利水渗湿，桂枝通阳化气，使膀胱气化得行、水湿得去。仲景治蓄水证主方，后世利水方多从此加减。"},
+      {name:"二陈汤", source:"《太平惠民和剂局方》", compose:"半夏、橘红、白茯苓、炙甘草", effect:"燥湿化痰，理气和中", indic:"湿痰证。咳嗽痰多、色白易咯、胸膈痞闷、恶心呕吐、肢体困倦", key:"治痰基础方。", story:"半夏、陈皮以陈久者良，故名「二陈」。半夏燥湿化痰，陈皮理气，茯苓健脾渗湿，甘草和中。一切痰饮皆可从此加减，被誉为「治痰总剂」。"},
+      {name:"温胆汤", source:"《三因极一病证方论》", compose:"半夏、竹茹、枳实、陈皮、炙甘草、茯苓、生姜、大枣", effect:"理气化痰，清胆和胃", indic:"胆郁痰扰证。胆怯易惊、虚烦不宁、失眠多梦、呕吐呃逆、癫痫", key:"化痰和胃安神。", story:"「温胆」并非温热胆腑，而是使胆气恢复温和条达。胆为清净之腑，痰热扰之则不宁，此方化痰清热、和胃安神，使胆气复其常温。"},
+      {name:"半夏厚朴汤", source:"《金匮要略》", compose:"半夏、厚朴、茯苓、生姜、苏叶", effect:"行气散结，降逆化痰", indic:"梅核气。咽中如有物阻、咯吐不出、吞咽不下、胸膈满闷", key:"梅核气专方。", story:"专为「梅核气」而设——咽中如有梅核梗阻，吐之不出、咽之不下。半夏、厚朴降气化痰，苏叶芳香行气，茯苓渗湿，是气滞痰凝的经典方。"},
+      {name:"血府逐瘀汤", source:"《医林改错》", compose:"桃仁、红花、当归、生地、川芎、赤芍、牛膝、桔梗、柴胡、枳壳、甘草", effect:"活血化瘀，行气止痛", indic:"胸中血瘀证。胸痛、头痛日久、痛如针刺、或呃逆日久、失眠多梦", key:"活血化瘀代表方。", story:"王清任创制。他认为胸中为「血府」，血瘀于此则诸症蜂起。本方以桃红四物活血，四逆散行气，桔梗、牛膝一升一降，使气血上下通畅，是活血化瘀的代表方。"},
+      {name:"补阳还五汤", source:"《医林改错》", compose:"黄芪120g、当归尾、赤芍、地龙、川芎、红花、桃仁", effect:"补气，活血，通络", indic:"中风后遗症。半身不遂、口眼歪斜、语言謇涩、口角流涎、下肢痿废", key:"大补元气以活血。", story:"王清任认为人的阳气有十分，中风后遗症因气虚血瘀，只剩五分。本方重用黄芪大补元气，配少量活血药，使气旺则血行，瘀去络通，故名「补阳还五」——补回失去的五分阳气。"},
+      {name:"金匮肾气丸", source:"《金匮要略》", compose:"干地黄、山药、山茱萸、泽泻、茯苓、牡丹皮、桂枝、附子", effect:"补肾助阳", indic:"肾阳不足证。腰痛脚软、下半身常有冷感、少腹拘急、小便不利或反多", key:"阴中求阳。六味加桂附。", story:"出自《金匮要略》，故名「金匮」。在六味地黄基础上加桂枝、附子，取「阴中求阳」之意——善补阳者，必于阴中求阳，使阳得阴助而生化无穷。"},
+      {name:"天王补心丹", source:"《摄生秘剖》", compose:"生地、人参、丹参、元参、白茯苓、五味子、远志、桔梗、当归、天冬、麦冬、柏子仁、酸枣仁", effect:"滋阴养血，补心安神", indic:"阴虚血少、神志不安。心悸失眠、虚烦神疲、梦遗健忘、大便干燥、口舌生疮", key:"滋阴安神代表方。", story:"传说为天王所传，故名「天王补心」。专治心阴不足、虚火上炎所致失眠心悸。生地、玄参、天麦冬滋阴，酸枣仁、柏子仁、远志安神，使心神得养。"},
+      {name:"酸枣仁汤", source:"《金匮要略》", compose:"酸枣仁、甘草、知母、茯苓、川芎", effect:"养血安神，清热除烦", indic:"肝血不足、虚热内扰。虚烦失眠、心悸盗汗、头目眩晕、咽干口燥", key:"养血安神。", story:"酸枣仁味酸入肝，养肝血、安心神为主药。配知母清虚热，川芎调血，茯苓宁心，是肝血不足、虚烦失眠的经典小方，药简力专。"},
+      {name:"玉屏风散", source:"《究原方》", compose:"黄芪、白术、防风", effect:"益气固表止汗", indic:"表虚自汗。汗出恶风、面色㿠白、舌淡苔薄白、脉浮虚；易感风邪", key:"益气固表。", story:"「玉屏风」比喻此方固护肌表，如玉石做成的屏风，挡住外风。黄芪益气固表，白术健脾，防风祛风，三药合用，固表而不留邪，是表虚易感的经典方。"},
+      {name:"独活寄生汤", source:"《备急千金要方》", compose:"独活、桑寄生、杜仲、牛膝、细辛、秦艽、茯苓、肉桂心、防风、川芎、人参、甘草、当归、芍药、干地黄", effect:"祛风湿，止痹痛，益肝肾，补气血", indic:"痹证日久、肝肾两虚、气血不足。腰膝疼痛、肢节屈伸不利、或麻木不仁", key:"扶正祛邪。久痹肝肾不足。", story:"孙思邈《千金方》名方。独活祛下焦风湿，桑寄生补肝肾、强筋骨，配伍补气血之品，使祛邪不伤正、扶正不留邪，是久痹兼虚的代表方。"},
+      {name:"仙方活命饮", source:"《校注妇人良方》", compose:"白芷、贝母、防风、赤芍、当归尾、甘草、皂角刺、穿山甲、天花粉、乳香、没药、金银花、陈皮", effect:"清热解毒，消肿溃坚，活血止痛", indic:"阳证痈疡肿毒初起。红肿热痛、或身热凛寒、苔薄白或黄、脉数有力", key:"疮疡肿毒第一方。", story:"「仙方」言其效如神仙所传，「活命」言其能救人性命。专治阳证疮疡初起，清热解毒、活血消肿，使毒散肿消，被誉为「疮疡之圣药、外科之首方」。"},
+      {name:"百合固金汤", source:"《慎斋遗书》", compose:"百合、熟地、生地、当归、白芍、甘草、桔梗、玄参、贝母、麦冬", effect:"养阴润肺，化痰止咳", indic:"肺肾阴虚。咳嗽气喘、痰中带血、咽喉燥痛、手足心热、骨蒸盗汗", key:"养阴润肺。", story:"百合入肺，养阴润燥、清心安神，为君药；生熟地滋肾阴，金水相生，故名「固金」——固护肺金。肺肾阴虚、虚火灼金之咳嗽咯血，此方主之。"}
+    ];
+
+    var offset = 0;
+
+    function dayOfYear(d) {
+      var start = new Date(d.getFullYear(), 0, 0);
+      var diff = d - start;
+      return Math.floor(diff / 864e5);
+    }
+
+    function getDateByOffset(off) {
+      var d = new Date();
+      d.setHours(0,0,0,0);
+      d.setDate(d.getDate() + off);
+      return d;
+    }
+
+    function renderFormula() {
+      var d = getDateByOffset(offset);
+      var idx = dayOfYear(d) % FORMULAS.length;
+      var f = FORMULAS[idx];
+      var dateStr = d.getFullYear() + '年' + (d.getMonth()+1) + '月' + d.getDate() + '日';
+      if (offset === 0) dateStr += ' · 今日一方';
+      else if (offset < 0) dateStr += ' · 前' + (-offset) + '天';
+      else dateStr += ' · 后' + offset + '天';
+
+      document.getElementById('f-name').textContent = f.name;
+      document.getElementById('f-date').textContent = dateStr;
+      document.getElementById('f-source').textContent = f.source;
+      document.getElementById('f-story').textContent = f.story;
+      document.getElementById('f-compose').textContent = f.compose;
+      document.getElementById('f-effect').textContent = f.effect;
+      document.getElementById('f-indic').textContent = f.indic;
+      document.getElementById('f-key').textContent = f.key;
+    }
+
+    document.getElementById('f-prev').onclick = function(){ offset--; renderFormula(); };
+    document.getElementById('f-today').onclick = function(){ offset = 0; renderFormula(); };
+    document.getElementById('f-next').onclick = function(){ offset++; renderFormula(); };
+
+    renderFormula();
+  })();
+
+  (function(){
+    var START = new Date(2026, 10, 18);
+    var T = [
+      "出门散步10分钟，不戴耳机。",
+      "把手机相册里30张无用照片删除。",
+      "做10个标准俯卧撑，可以分组完成。",
+      "整理自己的床铺，把床单铺平。",
+      "给一位家人打电话，聊5分钟。",
+      "把钱包、口袋里的票据清理干净。",
+      "靠墙站立5分钟，感受自己的体态。",
+      "给自己拍一张近期的正面生活照。",
+      "整理手机桌面，只保留常用应用。",
+      "出门买一样自己喜欢但平时舍不得买的小东西，预算20元以内。",
+      "把衣柜里3件不常穿的衣服整理出来。",
+      "写下最近最困扰自己的三件事。",
+      "睡前把手机放到离床一米以外的地方。",
+      "连续步行15分钟。",
+      "做15个俯卧撑，可以分组。",
+      "用温水认真洗一次脸，并做好基础护肤。",
+      "测量一次腰围，记录下来。",
+      "做10分钟肩颈拉伸。",
+      "把自己的鞋子清洁一双。",
+      "今天喝水时使用一个固定水杯，记录喝了几杯。",
+      "散步20分钟。",
+      "做20个深蹲，动作标准优先。",
+      "剪指甲，整理手部。",
+      "今天吃一顿不看手机的饭。",
+      "整理一次头发，尝试一个自己喜欢的发型。",
+      "记录最近一周平均睡觉和起床时间。",
+      "清理手机里一个长期不用的APP。",
+      "记录目前银行卡和现金的总余额。",
+      "做一次15分钟的房间清洁。",
+      "散步15分钟，观察沿途三个以前没注意过的细节。",
+      "给自己准备一顿简单的早餐。",
+      "去一家从未去过的咖啡店或小店坐一会儿。",
+      "写下2026年做过的五件值得肯定的小事。",
+      "检查一次手机订阅，取消不需要的付费服务。",
+      "做20个俯卧撑。",
+      "把电脑桌面上的文件整理一次。",
+      "听一首完整的音乐，不同时刷手机。",
+      "给自己买一份不超过30元的小礼物。",
+      "独自出门走走，至少30分钟。",
+      "写下自己2027年最想改善的三个方面。",
+      "整理一份自己的学历和资格证书电子档案。",
+      "做一次20分钟的户外步行。",
+      "写下自己目前最有价值的三项能力。",
+      "给2026年写一段100字以内的年终总结。",
+      "给2027年的自己写一封短信。",
+      "去一个有自然风景的地方走走。",
+      "整理手机备忘录，删除过期内容。",
+      "找出一份以前的简历，检查联系方式和基本信息。",
+      "做25个深蹲。",
+      "认真阅读一篇医学专业文章的摘要。",
+      "整理一次自己的衣服搭配，选出一套喜欢的穿搭。",
+      "记录本月已经花掉的钱。",
+      "给自己做一顿喜欢吃的饭。",
+      "写下目前工作中最想改变的一件事。",
+      "连续靠墙站立8分钟。",
+      "学会一道以前没做过的简单菜。",
+      "给一位老朋友发一条自然的问候。",
+      "清理一次汽车内部，擦干净中控台。",
+      "做30个俯卧撑，可以分组完成。",
+      "去书店逛一圈，至少停留15分钟。",
+      "记录一次自己的体重和腰围。",
+      "整理自己的证件照和个人照片。",
+      "今天不玩王者荣耀，留出时间给自己。",
+      "出门晒太阳15分钟。",
+      "把家里一个抽屉彻底整理干净。",
+      "找一部一直想看的电影，认真看完。",
+      "独自去吃一顿饭，不因为没人陪就放弃。",
+      "写下最近一个月自己发生的三个变化。",
+      "整理一次自己的职业规划，写下一个最现实的下一步。",
+      "做一次20分钟的散步。",
+      "删除手机里100张无用照片。",
+      "做30个俯卧撑，可以分组完成。",
+      "整理一次自己的银行卡、账单和支出记录。",
+      "买一件春节期间想穿的新衣服或配饰，预算自行决定。",
+      "给父母或家人做一件具体的小事。",
+      "整理汽车后备箱或车内储物空间。",
+      "写下自己2026年最遗憾的一件事，以及准备如何面对它。",
+      "完成一次20分钟户外运动。",
+      "给自己拍一张春节前的照片。",
+      "写下这81天完成了多少件事。",
+      "给自己买一份春节礼物，认真庆祝一下。"
+    ];
+    var DAY = 864e5, KEY = 'p81_done';
+    var done = {};
+    try { done = JSON.parse(localStorage.getItem(KEY) || '{}'); } catch(e) {}
+    function save() { try { localStorage.setItem(KEY, JSON.stringify(done)); } catch(e) {} }
+    var now = new Date(), t0 = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+    var idx = Math.round((t0 - START) / DAY);
+    var cur = Math.min(Math.max(idx, 0), T.length - 1);
+    var $ = function(i) { return document.getElementById(i); };
+    function fmt(i) {
+      var d = new Date(START.getTime() + i * DAY);
+      return (d.getMonth() + 1) + '月' + d.getDate() + '日';
+    }
+    function render() {
+      var n = Object.keys(done).length;
+      $('p81-sub').textContent = idx < 0 ? '明天开始，共81天' : (idx >= T.length ? '已走完全部81天' : '第 ' + (idx + 1) + ' / 81 天') + ' · 已完成 ' + n + ' 天';
+      $('p81-date').textContent = fmt(cur) + (idx < 0 ? '（第一天）' : '');
+      $('p81-task').textContent = T[cur];
+      var b = $('p81-done');
+      b.className = 'plan81-btn' + (done[cur] ? ' on' : '');
+      b.textContent = done[cur] ? '已完成' : '今天做了';
+      $('p81-fill').style.width = (n / T.length * 100) + '%';
+      var html = '';
+      T.forEach(function(s, i) {
+        html += '<li class="' + (done[i] ? 'done ' : '') + (i === cur ? 'now' : '') + '"><b>' + fmt(i) + '</b> ' + s + '</li>';
+      });
+      $('p81-list').innerHTML = html;
+    }
+    $('p81-done').onclick = function() {
+      if (done[cur]) delete done[cur];
+      else done[cur] = 1;
+      save();
+      render();
+    };
+    render();
+  })();
+  
+  // ===== 每日一句（北京时间自动轮换）=====
+  (function(){
+    var QUOTES = [
+      {zh:"真正的自信，是承认自己不完美后，依然选择前行。", en:"True confidence is choosing to move forward after accepting your imperfections."},
+      {zh:"独立不是拒绝帮助，而是即使没有帮助，也能站稳。", en:"Independence is not refusing help, but standing firm even without it."},
+      {zh:"成长往往发生在舒适区之外，而不是在抱怨之中。", en:"Growth happens outside the comfort zone, not in complaints."},
+      {zh:"金钱是工具，不是目的。学会驾驭它，而不是被它驾驭。", en:"Money is a tool, not a goal. Learn to master it, rather than be mastered by it."},
+      {zh:"自由的代价是责任。逃避责任的人，永远得不到真正的自由。", en:"The price of freedom is responsibility. Those who avoid it never gain true freedom."},
+      {zh:"勇气不是没有恐惧，而是带着恐惧依然行动。", en:"Courage is not the absence of fear, but acting despite it."},
+      {zh:"行动是最好的答案。想得再多，不如迈出一步。", en:"Action is the best answer. Thinking more achieves less than taking one step."},
+      {zh:"生活不会因为你的等待而变好，只会因为你的选择而改变。", en:"Life does not improve because you wait; it changes because of the choices you make."},
+      {zh:"自我接纳不是放弃进步，而是停止与自己为敌。", en:"Self-acceptance is not giving up on growth, but stopping the war against yourself."},
+      {zh:"真正的强大，是能在无人看见时依然坚持做正确的事。", en:"True strength is persisting in what is right even when no one is watching."},
+      {zh:"不要用别人的尺子衡量自己的人生。", en:"Do not measure your life with someone else's ruler."},
+      {zh:"每一次拒绝都是一次筛选，帮你留下真正重要的东西。", en:"Every rejection is a filter that helps keep what truly matters."},
+      {zh:"自律不是束缚，而是通往自由的最短路径。", en:"Discipline is not confinement, but the shortest path to freedom."},
+      {zh:"失败不可怕，可怕的是把失败当成终点。", en:"Failure is not frightening; treating it as the end is."},
+      {zh:"把注意力放在可控的事情上，你会发现力量其实一直在。", en:"Focus on what you can control, and you will find the power was always there."},
+      {zh:"成熟的标志之一，是不再急于向世界证明自己。", en:"One sign of maturity is no longer rushing to prove yourself to the world."},
+      {zh:"财富的本质是选择的自由，而不是数字的堆积。", en:"The essence of wealth is the freedom to choose, not the accumulation of numbers."},
+      {zh:"真正的休息，是内心的平静，而不是身体的躺平。", en:"True rest is inner calm, not physical idleness."},
+      {zh:"你不需要完美才开始，你需要开始才会接近完美。", en:"You do not need to be perfect to start; you need to start to approach perfection."},
+      {zh:"把每一次跌倒都当成校准方向的机会。", en:"Treat every fall as a chance to recalibrate your direction."},
+      {zh:"独立思考比跟随多数人更需要勇气。", en:"Thinking independently requires more courage than following the majority."},
+      {zh:"金钱会放大你的性格，不会改变你的本质。", en:"Money amplifies your character; it does not change your essence."},
+      {zh:"真正的成长是安静的，它不需要观众。", en:"True growth is quiet; it needs no audience."},
+      {zh:"接受不完美的自己，是对自己最大的慈悲。", en:"Accepting your imperfect self is the greatest kindness you can show yourself."},
+      {zh:"行动创造机会，等待只会消耗时间。", en:"Action creates opportunity; waiting only consumes time."},
+      {zh:"自由不是想做什么就做什么，而是能决定不做什么。", en:"Freedom is not doing whatever you want, but being able to decide what not to do."},
+      {zh:"自信来自反复完成小而难的事。", en:"Confidence comes from repeatedly completing small but difficult things."},
+      {zh:"生活没有标准答案，只有适合自己的选择。", en:"Life has no standard answers, only choices that suit you."},
+      {zh:"把注意力从「我不够好」转向「我还能做什么」。", en:"Shift your focus from \"I am not good enough\" to \"What else can I do?\""},
+      {zh:"真正的勇气，是在不确定中依然选择向前。", en:"True courage is choosing to move forward amid uncertainty."},
+      {zh:"成长的代价是暂时的不适，停滞的代价是长期的遗憾。", en:"The cost of growth is temporary discomfort; the cost of stagnation is lasting regret."},
+      {zh:"金钱买不到时间，但能买到更多选择时间的自由。", en:"Money cannot buy time, but it can buy the freedom to choose how to spend it."},
+      {zh:"自我接纳不是终点，而是开始真正改变的起点。", en:"Self-acceptance is not the end, but the starting point of real change."},
+      {zh:"不要把自己的价值寄托在别人的评价上。", en:"Do not place your worth in the evaluations of others."},
+      {zh:"坚持做难而正确的事，时间会站在你这边。", en:"Keep doing what is hard yet right, and time will stand with you."}
+
+    ];
+    function getBeijingDayIndex() {
+      var now = new Date();
+      var fmt = new Intl.DateTimeFormat('en-US', {
+        timeZone: 'Asia/Shanghai',
+        year: 'numeric',
+        month: '2-digit',
+        day: '2-digit'
+      });
+      var parts = fmt.formatToParts(now);
+      var y, m, d;
+      parts.forEach(function(p) {
+        if (p.type === 'year') y = parseInt(p.value, 10);
+        if (p.type === 'month') m = parseInt(p.value, 10);
+        if (p.type === 'day') d = parseInt(p.value, 10);
+      });
+      var utc = Date.UTC(y, m - 1, d);
+      var base = Date.UTC(2020, 0, 1);
+      var dayIndex = Math.floor((utc - base) / 86400000);
+      return dayIndex;
+    }
+    var idx = getBeijingDayIndex() % QUOTES.length;
+    if (idx < 0) idx += QUOTES.length;
+    var q = QUOTES[idx];
+    var zhEl = document.getElementById('quote-zh');
+    var enEl = document.getElementById('quote-en');
+    if (zhEl && enEl) {
+      zhEl.textContent = q.zh;
+      enEl.textContent = q.en;
+    }
+  })();
+
+  </script>
+</body>
+</html>
